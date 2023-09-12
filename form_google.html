@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <button id="loginWithGoogle">Login with Google</button>
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyArH09v4ucn6YV7WbX175uMIiY7m6K664s",
+            authDomain: "trial-36d2f.firebaseapp.com",
+            databaseURL: "https://trial-36d2f-default-rtdb.firebaseio.com",
+            projectId: "trial-36d2f",
+            storageBucket: "trial-36d2f.appspot.com",
+            messagingSenderId: "49531009493",
+            appId: "1:49531009493:web:3e296751a64f24b06c655c"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the Firebase authentication service
+        const auth = firebase.auth();
+
+        // Get a reference to the Google authentication provider
+        const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+
+        // Add a click event listener to the "Login with Google" button
+        document.getElementById("loginWithGoogle").addEventListener("click", () => {
+            // Sign in with Google using a popup
+            auth.signInWithPopup(googleAuthProvider)
+                .then((userCredential) => {
+                    // User successfully authenticated with Google
+                    const user = userCredential.user;
+                    console.log("Logged in as:", user.displayName);
+                })
+                .catch((error) => {
+                    // Handle authentication errors
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Google login error:", errorCode, errorMessage);
+                });
+        });
+    </script>
+</body>
+</html>

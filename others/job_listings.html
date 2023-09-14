@@ -1,0 +1,43 @@
+<html>
+    <body>
+        <h1>Job listings page</h1>
+        <p id="job_title">Job title here</p>
+        <p id="company">Company name here</p>
+
+    </body>
+</html>
+<!--HAVE TO INCLUDE THE NECESSARY CDNS LIKE APP AND ESPECIALLY DATABASE HERE-->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+<script type="module">
+    // script type has to be of module
+    const firebaseConfig = {
+        apiKey: "AIzaSyArH09v4ucn6YV7WbX175uMIiY7m6K664s",
+        authDomain: "trial-36d2f.firebaseapp.com",
+        databaseURL: "https://trial-36d2f-default-rtdb.firebaseio.com",
+        projectId: "trial-36d2f",
+        storageBucket: "trial-36d2f.appspot.com",
+        messagingSenderId: "49531009493",
+        appId: "1:49531009493:web:3e296751a64f24b06c655c"
+        };
+
+    firebase.initializeApp(firebaseConfig);
+
+    // Create a function to display data from a given path
+    function displayDataFromPath(path) {
+    const dbRef = firebase.database().ref(path);
+
+    dbRef.on("value", (snapshot) => {
+        const data = snapshot.val();
+        // Update your UI based on the common field names
+        if (data) {
+        document.getElementById("company").innerHTML = data.company || "N/A";
+        document.getElementById("job_title").innerHTML = data.title || "N/A";
+        }
+    });
+    }
+
+    // Call the function with the desired paths
+    displayDataFromPath("Jobs/Job1");
+    // Add more paths as needed
+</script>

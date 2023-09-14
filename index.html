@@ -37,6 +37,8 @@
                     // User successfully authenticated with Google
                     const user = userCredential.user;
                     console.log("Logged in as:", user.displayName);
+
+                    window.location.href ="home_page.html";
                 })
                 .catch((error) => {
                     // Handle authentication errors

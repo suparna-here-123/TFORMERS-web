@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Application form page</title>
+    </head>
+    <body>
+        <h1> Application form page</h1>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const value = urlParams.get('employer_email');
+            document.write(value);
+        </script>
+    </body>
+</html>

@@ -4,6 +4,22 @@
     </head>
     <body>
         <h1> YOU ARE NOW LOGGED IN</h1>
-        <a href="generic_job_ls.html" target="_self">Job_listings</a>
+        <!--<a href="generic_job_ls.html" target="_self">Job_listings</a>-->
+        <button onclick="goto('job_ls')" id="job_ls" class="goto_button">Job Listings</button>
+        <button onclick="goto('sup_grps')" id="sup_grps" class="goto_button">Support Groups</button>
+        <button onclick="goto('upskilling')" id="upskilling" class="goto_button">Upskilling</button>
+
+        <script>
+            function goto(buttonId){
+                if (buttonId == 'job_ls'){
+                    window.location.href="generic_job_ls.html";
+                }
+                else if(buttonId == 'sup_grps'){
+                    window.location.href="group_chat_1.html";
+                }
+                else if(buttonId == 'upskilling')
+                    window.location.href="upskilling.html";
+                }
+        </script>
     </body>
 </html>

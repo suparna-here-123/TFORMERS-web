@@ -1,0 +1,174 @@
+<html>
+    <head>
+        <title>Upskilling</title>
+        
+
+    <style>
+        /* Reset default margin and padding for all elements */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Apply a background color and text color to the entire body */
+        body {
+            background-color: rgb(255, 224, 253);
+            color: #333;
+            font-family: Inter;
+            padding: 20px;
+        }
+
+        /* Style the page title */
+        h1 {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            font-family: Inter;
+        }
+
+        /* Style the section headings */
+        h2 {
+            font-size: 18px;
+            color: #444;
+            margin-top: 20px;
+            text-align: center;
+            font-family: Inter;
+        }
+
+        /* Style each course item container */
+        .course-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            font-family: Inter;
+        }
+
+        /* Style the "Apply" button with a purple color */
+        button {
+            background-color: #7b68ee; /* Purple color */
+            color: #fff;
+            border: none;
+            padding: 2px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            font-family: Inter;
+        }
+
+        /* Add hover effect to the "Apply" button */
+        button:hover {
+            background-color: #6a5acd; /* Darker purple color on hover */
+        }
+    </style>
+</head>
+
+        
+    
+    <body>
+        <h1>Upskilling</h1>
+        <h2>Get ready to upskill yourself!</h2>
+        <div id="courseList">
+        </div>
+    </body>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+    <script type="module">
+        // script type has to be of module
+        const firebaseConfig = {
+        apiKey: "AIzaSyArH09v4ucn6YV7WbX175uMIiY7m6K664s",
+        authDomain: "trial-36d2f.firebaseapp.com",
+        databaseURL: "https://trial-36d2f-default-rtdb.firebaseio.com",
+        projectId: "trial-36d2f",
+        storageBucket: "trial-36d2f.appspot.com",
+        messagingSenderId: "49531009493",
+        appId: "1:49531009493:web:3e296751a64f24b06c655c"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        // Reference to the "Courses" node
+        const coursesRef = firebase.database().ref("Courses");
+
+        // Reference to the HTML container where course information will be displayed
+        const courseListElement = document.getElementById("courseList");
+
+        // Listen for changes in the "Courses" node
+        coursesRef.on("value", (snapshot) => {
+            // Clear existing course list
+            courseListElement.innerHTML = "";
+
+            // Iterate through each course node
+            snapshot.forEach((courseSnapshot) => {
+                const courseData = courseSnapshot.val();
+                const courseId = courseSnapshot.key; // Get the course ID ("Course1", "Course2", ...)
+
+                // Create a div element for each course
+                const courseDiv = document.createElement("div");
+                courseDiv.classList.add("course-item"); // Style this class with CSS
+
+                // Create and populate elements for course title, description, instructor, etc.
+                const courseTitleElement = document.createElement("p");
+                courseTitleElement.textContent = `Course Title: ${courseData.courseName}`;
+                
+                const courseDescElement = document.createElement("p");
+                courseDescElement.textContent = `Description: ${courseData.desc}`;
+                
+                const courseInstructorElement = document.createElement("p");
+                courseInstructorElement.textContent = `Instructor: ${courseData.instructor}`;
+                
+                const courseLocationElement = document.createElement("p");
+                courseLocationElement.textContent = `Location: ${courseData.location}`;
+                
+                const courseCityElement = document.createElement("p");
+                courseCityElement.textContent = `City: ${courseData.city}`;
+                
+                const applyButton = document.createElement("button");
+                applyButton.textContent = "Apply";
+
+                // Define a function to handle the click event
+// Define a function to handle the click event
+          function gotoApplication() {
+
+              const courseRef = coursesRef.child(courseId); // Reference to the specific course
+
+              courseRef.transaction((course) => {
+                  if (course) {
+                      // If the course exists, increment the attendees count
+                      if (!course.attendees) {
+                          course.attendees = 0; // Initialize to 0 if it doesn't exist
+                      }
+                      course.attendees++;
+                  }
+                  return course; // Return the updated course data
+              }, (error, committed, snapshot) => {
+                  if (error) {
+                      console.error("Error updating attendees:", error);
+                  } else if (committed) {
+                      // Get the updated number of attendees from the snapshot
+                      const updatedAttendees = snapshot.val().attendees;
+                      alert("You are now attending this event!");
+                  }
+              });
+          }
+
+applyButton.onclick = gotoApplication;
+
+
+                applyButton.onclick = gotoApplication;
+
+                // Append elements to the course div
+                courseDiv.appendChild(courseTitleElement);
+                courseDiv.appendChild(courseDescElement);
+                courseDiv.appendChild(courseInstructorElement);
+                courseDiv.appendChild(courseLocationElement);
+                courseDiv.appendChild(courseCityElement);
+                courseDiv.appendChild(applyButton);
+
+                // Append the course div to the course list container
+                courseListElement.appendChild(courseDiv);
+            });
+        });
+    </script>
+</html>

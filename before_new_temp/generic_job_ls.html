@@ -1,0 +1,134 @@
+<html>
+    <head>
+        <style>
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #edbdef;
+                margin: 0;
+                padding: 0;
+            }
+
+            h1 {
+                text-align: center;
+                padding: 20px;
+                font-family: Inter;
+            }
+
+            #jobList {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .job-item {
+                font-family: Inter;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                margin: 10px;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .job-item p {
+                margin: 10px 0;
+            }
+
+            button {
+                background-color: #800080; /* Purple color */
+                color: #fff; /* White text color */
+                border: none;
+                border-radius: 5px;
+                padding: 10px 20px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            button:hover {
+                background-color: #660066; /* Darker purple on hover */
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h1>JOB LISTINGS HERE</h1>
+        <div id="jobList">
+
+        </div>
+    </body>
+</html>
+
+
+
+<!--HAVE TO INCLUDE THE NECESSARY CDNS LIKE APP AND ESPECIALLY DATABASE HERE-->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+<script type="module">
+    // script type has to be of module
+    const firebaseConfig = {
+        apiKey: "AIzaSyArH09v4ucn6YV7WbX175uMIiY7m6K664s",
+        authDomain: "trial-36d2f.firebaseapp.com",
+        databaseURL: "https://trial-36d2f-default-rtdb.firebaseio.com",
+        projectId: "trial-36d2f",
+        storageBucket: "trial-36d2f.appspot.com",
+        messagingSenderId: "49531009493",
+        appId: "1:49531009493:web:3e296751a64f24b06c655c"
+        };
+
+    firebase.initializeApp(firebaseConfig);
+    // Assuming Firebase is already initialized
+
+// Reference to the "Jobs" node
+const jobsRef = firebase.database().ref("Jobs");
+
+// Reference to the HTML container where job information will be displayed
+const jobListElement = document.getElementById("jobList");
+
+// Listen for changes in the "Jobs" node
+jobsRef.on("value", (snapshot) => {
+  // Clear existing job list
+  jobListElement.innerHTML = "";
+
+  // Iterate through each job node
+  snapshot.forEach((jobSnapshot) => {
+    const jobData = jobSnapshot.val();
+    const jobId = jobSnapshot.key; // Get the job ID ("Job1", "Job2",...)
+
+    // Create a div element for each job
+    const jobDiv = document.createElement("div");
+    jobDiv.classList.add("job-item"); //style this class with CSS
+
+    // Create and populate elements for job title and company
+    const jobTitleElement = document.createElement("p");
+    jobTitleElement.textContent = `Job Title: ${jobData.title}`;
+    const jobCompanyElement = document.createElement("p");
+    jobCompanyElement.textContent = `Company: ${jobData.company}`;
+    const ApplyButton = document.createElement("button");
+    ApplyButton.textContent="Apply";
+    
+
+    // THIS FUNCTION IS TAKING THE USER TO THE APPLICATION PAGE
+    function goto_application(){
+      alert("Now applying to " + jobData.title);
+      window.location.href = "application_form.html?employer_email="+jobData.employer_email;
+    }
+    ApplyButton.onclick= goto_application;
+
+    // Append elements to the job div
+    jobDiv.appendChild(jobTitleElement);
+    jobDiv.appendChild(jobCompanyElement);
+    jobDiv.appendChild(ApplyButton);
+
+    // Append the job div to the job list container
+    jobListElement.appendChild(jobDiv);
+  });
+});
+
+
+</script>

@@ -1,0 +1,70 @@
+<!--THIS IS THE PLACE WHERE THE RECRUITER IS LISTING JOBS-->
+<html>
+    <head>
+        <title>List your job here!</title>
+    </head>
+    <body>
+        <form id="registrationForm">
+            <input type="text" id="company" placeholder="Company Name...">
+            <input type="text" id="job_title" placeholder="Job Title">
+            <input type="email" id = "mail"placeholder="Recruiter Email ID...">
+            <input type="submit" value="List this job">
+        </form>
+        <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+        <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+        apiKey: "AIzaSyArH09v4ucn6YV7WbX175uMIiY7m6K664s",
+        authDomain: "trial-36d2f.firebaseapp.com",
+        databaseURL: "https://trial-36d2f-default-rtdb.firebaseio.com",
+        projectId: "trial-36d2f",
+        storageBucket: "trial-36d2f.appspot.com",
+        messagingSenderId: "49531009493",
+        appId: "1:49531009493:web:3e296751a64f24b06c655c"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+    
+        var DB_connection = firebase.database().ref("Jobs");
+        document.getElementById("registrationForm").addEventListener('submit', submitForm)
+
+        function submitForm(e){
+        e.preventDefault();
+        var company_ = getElementVal("company");
+        var job_title = getElementVal("job_title");
+        var emp_mail = getElementVal("mail");
+
+        saveMessages(company_, job_title, emp_mail);
+        }
+        const saveMessages = (company_, job_title, emp_mail) => {
+        var newForm = DB_connection.push();
+
+        newForm.set({
+            company : company_,
+            title: job_title,
+            employer_email: emp_mail,
+        })
+        };
+        const getElementVal = (id) => {
+        return document.getElementById(id).value;
+        }
+
+        // Get references to the form and input fields
+        const registrationForm = document.getElementById('registrationForm');
+        const companyInput = document.getElementById('company');
+        const job_titleInput = document.getElementById('job_title');
+        const mailInput = document.getElementById('mail');
+
+        // Add a submit event listener to the form
+        registrationForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+        const company = companyInput.value;
+        const title = job_titleInput.value;
+        const mail = mailInput.value;
+        })
+    </script>
+    </body>
+</html>

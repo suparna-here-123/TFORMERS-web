@@ -8,13 +8,8 @@
             <div class = "chat-window" id = "chat-window">
               <ul id = "messages">
                 <li class="msg">
-                  <span class = "msg-span">
-                    <i class = "name">Host: </i>Hello and welcome to the chat!
-                  </span>
-                </li>
-                <li class="msg_my">
-                  <span class = "msg-span">
-                    <i class = "name">Me: </i>My message is on the right
+                  <span class = "msg_span">
+                    <i class = "name">TransCend</i>Welcome to the group chat!
                   </span>
                 </li>
               </ul>
@@ -78,7 +73,7 @@
                 const {sender, text} = data.val(); //get name and text
 
                 //load messages, display on left if not the user's name. Display on right if it is the user.
-                const msg = `<li class="${sender == name ? "msg_my": "msg"}"><span class = "msg-span">
+                const msg = `<li class="${sender == name ? "msg-my": "msg"}"><span class = "msg-span">
                     <i class = "name">${sender}: </i>${text}
                     </span>
                 </li>`

@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>Support Group 1</title>
+        <link rel="stylesheet" href="group_chat_styles.css">
+    </head>
+    <body>
+        <div class = "chat">
+            <div class = "chat-window" id = "chat-window">
+              <ul id = "messages">
+                <li class="msg">
+                  <span class = "msg-span">
+                    <i class = "name">Host: </i>Hello and welcome to the chat!
+                  </span>
+                </li>
+                <li class="msg_my">
+                  <span class = "msg-span">
+                    <i class = "name">Me: </i>My message is on the right
+                  </span>
+                </li>
+              </ul>
+              <form id = "messageForm" autocomplete="off">
+                <input type = "text" id = "msg_input" placeholder="Enter a message">
+                <button id = "msg_btn" type = "submit">Send</button>
+              </form>
+            </div>
+          </div>
+    
+          <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+          <script type="module">
+              // script type has to be of module
+              const firebaseConfig = {
+                  apiKey: "AIzaSyArH09v4ucn6YV7WbX175uMIiY7m6K664s",
+                  authDomain: "trial-36d2f.firebaseapp.com",
+                  databaseURL: "https://trial-36d2f-default-rtdb.firebaseio.com",
+                  projectId: "trial-36d2f",
+                  storageBucket: "trial-36d2f.appspot.com",
+                  messagingSenderId: "49531009493",
+                  appId: "1:49531009493:web:3e296751a64f24b06c655c"
+                  };
+          
+              firebase.initializeApp(firebaseConfig);
+              
+            const msgScreen = document.getElementById("messages"); //the <ul> that displays all the <li> msgs
+            const msgForm = document.getElementById("messageForm"); //the input form
+            const msgInput = document.getElementById("msg_input"); //the input element to write messages
+            const msgBtn = document.getElementById("msg_btn"); //the Send button
+
+            const db = firebase.database();
+            const msgRef = db.ref("Msgs")
+
+            // getting user to give their name upon entering the chat app
+            let name="";
+            function init()
+            {
+                name=prompt("Please enter your name");
+            }
+            // calls the init function when the html page is ready and rendered
+            document.addEventListener('DOMContentLoaded', init);
+
+            // setting up event listener for the send buttong
+            messageForm.addEventListener('submit', sendMessage);
+
+            function sendMessage(e){
+                e.preventDefault();     // prevents from sending blank messages
+                const text=msgInput.value;
+                if(!text.trim()) return alert('Please type a message'); //no msg submitted
+                const msg = {   // else it is going to record the message typed and send to db
+                    sender: name,         // dataName is the sender
+                    text: text
+                };
+
+                msgRef.push(msg);
+                msgInput.value = "";    // resetting the msg field to empty once message is sent
+
+            }
+            const updateMsgs = data =>{
+                const {sender, text} = data.val(); //get name and text
+
+                //load messages, display on left if not the user's name. Display on right if it is the user.
+                const msg = `<li class="${sender == name ? "msg_my": "msg"}"><span class = "msg-span">
+                    <i class = "name">${sender}: </i>${text}
+                    </span>
+                </li>`
+
+                msgScreen.innerHTML += msg; //add the <li> message to the chat window
+
+                //auto scroll to bottom
+                document.getElementById("chat-window").scrollTop = document.getElementById("chat-window").scrollHeight;
+                }
+
+
+            // displaying the new messages on the user's chat window
+            msgRef.on("child_added", updateMsgs);
+
+
+
+            </script>
+    </body>
+</html>

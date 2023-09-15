@@ -4,10 +4,40 @@
     </head>
     <body>
         <h1> Application form page</h1>
+        <form onsubmit="sendEmail(event)">
+            <input type="text" class="ip" placeholder="First Name"><br>
+            <input type="text" class="ip" placeholder="Last Name"><br>
+            <input type="file" class="ip" placeholder="Attach CV"><br>
+            <input type="submit" value="Send my application!"><br>
+        </form>
+        <!-- this is the SMTP library imported to enable email SENDING ONLY-->
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+        <!-- getting the employer email id that was passed from the job_listings_ls.html page-->
         <script>
             const urlParams = new URLSearchParams(window.location.search);
             const value = urlParams.get('employer_email');
-            document.write(value);
+            console.log(typeof(value));
         </script>
+
+
+<!--ALERT MESSAGE COMING BUT EMAIL IS NOT BEING SENT-->
+          <script type="text/javascript">
+            function sendEmail(e) {
+              e.preventDefault();
+              Email.send({
+                Host: "smtp.gmail.com",
+                Username: "formers.trans.2023@gmail.com",
+                Password: "ThisisSunil",
+                To: "suparnaprasad.in@gmail.com",
+                From: "formers.trans.2023@gmail.com",
+                Subject: "Sending Email using javascript",
+                Body: "Well that was easy!!",
+              })
+                .then(function (message) {
+                  alert("mail sent successfully")
+                });
+            }
+          </script>
     </body>
 </html>

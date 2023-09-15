@@ -1,0 +1,286 @@
+.desktop-1
+{
+background-color:#ffffff;
+height:1024px;
+width:1440px;
+padding:0px;
+top:31px;
+position:relative;
+}
+.rectangle1
+{
+background-color:#9db7d5;
+height:786px;
+width:1440px;
+top:207px;
+left:0px;
+position:absolute;
+}
+.line1
+{
+width:789.0228271484375px;
+transform:rotate(-90deg);
+border:5px solid #000000;
+top:207px;
+left:720px;
+position:absolute;
+}
+.rectangle2
+{
+background-color:#000000;
+height:155px;
+width:487px;
+border:3px solid #ffffff;
+top:653px;
+left:102px;
+position:absolute;
+}
+.signupasanemployee
+{
+color:#ffffff;
+text-align:center;
+vertical-align:text-top;
+font-size:37px;
+font-family:Inter;
+line-height:auto;
+border-style:hidden;
+outline:none;
+top:691px;
+left:125px;
+position:absolute;
+width:413px;
+}
+.rectangle3
+{
+background-color:#000000;
+height:155px;
+width:487px;
+border:2px solid #ffffff;
+top:653px;
+left:874px;
+position:absolute;
+}
+.signupasanemployer
+{
+color:#fffafa;
+text-align:center;
+vertical-align:text-top;
+font-size:37px;
+font-family:Inter;
+line-height:auto;
+border-style:hidden;
+outline:none;
+top:695px;
+left:908px;
+position:absolute;
+width:413px;
+} */
+
+/* ___________________________________________________ */
+ .frame2
+{
+position:absolute;
+background-color:#e59855;
+height:957px;
+width:1542px;
+filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+padding:0px;
+}
+.rectangle11
+{
+background-color:#ffffff;
+height:89px;
+width:496px;
+filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+border:1px solid #000000;
+left:608px;
+top:353px;
+position:absolute;
+}
+.rectangle12
+{
+background-color:#ffffff;
+height:89px;
+width:493px;
+filter:drop-shadow(2px 4px 4px rgba(0,0,0,0.25));
+border:1px solid #000000;
+top:706px;
+left:611px;
+position:absolute;
+}
+.signinasemployee
+{
+color:#000000;
+text-align:center;
+vertical-align:text-top;
+font-size:37px;
+font-family:Inter;
+left:635px;
+top:383px;
+width:445px;
+height:59px;
+position:absolute;
+line-height:auto;
+border-style:hidden;
+outline:none;
+}
+.signinasemployer
+{
+color:#000000;
+text-align:center;
+vertical-align:text-top;
+font-size:37px;
+font-family:Inter;
+left:635px;
+top:736px;
+width:445px;
+height:59px;
+position:absolute;
+line-height:auto;
+border-style:hidden;
+outline:none;
+}
+.ellipse2
+{
+height:300px;
+width:300px;
+left:102px;
+top:586px;
+position:absolute;
+border-radius:50%;
+}
+.ellipse3
+{
+height:284px;
+width:293px;
+left:102px;
+top:256px;
+position:absolute;
+border-radius:50%;
+} 
+/* ___________________________________________________*/
+
+.frame3
+{
+position:absolute;
+background-color:#fe8564;
+height:957px;
+width:1542px;
+filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+padding:0px;
+}
+.rectangle9
+{
+background-color:#ffffff;
+height:582px;
+width:499px;
+border:4px solid #000000;
+left:904px;
+top:188px;
+position:absolute;
+}
+.rectangle14
+{
+background-color:#fe8564;
+height:109px;
+width:426px;
+top:351px;
+left:938px;
+position:absolute;
+}
+.signupusinggoogle
+{
+color:#000000;
+text-align:center;
+vertical-align:text-top;
+font-size:37px;
+font-family:Inter;
+left:1012px;
+top:361px;
+width:277px;
+height:90px;
+position:absolute;
+line-height:auto;
+border-style:hidden;
+outline:none;
+}
+.asanemployee
+{
+color:#000000;
+text-align:center;
+vertical-align:text-top;
+font-size:37px;
+font-family:Inter;
+left:999px;
+top:260px;
+width:317px;
+height:45px;
+position:absolute;
+line-height:auto;
+border-style:hidden;
+outline:none;
+}
+.signup2
+{
+color:#000000;
+text-align:center;
+vertical-align:text-top;
+font-size:37px;
+font-family:Inter;
+left:1082px;
+top:215px;
+width:151px;
+height:45px;
+position:absolute;
+line-height:auto;
+border-style:hidden;
+outline:none;
+}
+.rectangle13
+{
+background-color:#fe8564;
+height:109px;
+width:426px;
+top:507px;
+left:941px;
+position:absolute;
+}
+.submitgendercertificate
+{
+color:#000000;
+text-align:center;
+vertical-align:text-top;
+font-size:37px;
+font-family:Inter;
+left:1000px;
+top:517px;
+width:302px;
+height:90px;
+position:absolute;
+line-height:auto;
+border-style:hidden;
+outline:none;
+}
+#login {
+    display: inline-block;
+    height:109px;
+    width:426px;
+    top:351px;
+    left:938px;
+    background-color: #fe8564; /* Background color */
+    color: #121212; /* Text color */
+    text-align: center;
+    font-size: 37px;
+    font-family: Inter;
+    text-decoration: none; /* Remove underlines from links */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Add a pointer cursor on hover */
+}
+h1{
+    text-align: center;
+    font-family: Inter;
+    font-style: italic;
+    font-size: 60px;
+
+}

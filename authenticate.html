@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="sruj_index_css.css">
+    <style>
+        body {
+            background-color: #fe8564; 
+        }
+    </style>
+</head>
+<body>
+<div id='frame3' class='frame3'>
+    <div id='rectangle9' class='rectangle9'>
+    </div>
+    <div id='rectangle14' class='rectangle14'>
+            <button id="login">LOGIN WITH GOOGLE</button>
+    </div>
+        
+
+
+    <div id='asanemployee' class='asanemployee'>
+    AS AN EMPLOYEE</div>
+    <div id='signup2' class='signup2'>
+    SIGN UP</div>
+    <div id='rectangle13' class='rectangle13'>
+    </div>
+    <div id='submitgendercertificate' class='submitgendercertificate'>
+    SUBMIT GENDER
+        CERTIFICATE</div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyArH09v4ucn6YV7WbX175uMIiY7m6K664s",
+            authDomain: "trial-36d2f.firebaseapp.com",
+            databaseURL: "https://trial-36d2f-default-rtdb.firebaseio.com",
+            projectId: "trial-36d2f",
+            storageBucket: "trial-36d2f.appspot.com",
+            messagingSenderId: "49531009493",
+            appId: "1:49531009493:web:3e296751a64f24b06c655c"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the Firebase authentication service
+        const auth = firebase.auth();
+
+        // Get a reference to the Google authentication provider
+        const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+
+        // Add a click event listener to the "Login with Google" button
+        document.getElementById("login").addEventListener("click", () => {
+            // Sign in with Google using a popup
+            auth.signInWithPopup(googleAuthProvider)
+                .then((userCredential) => {
+                    // User successfully authenticated with Google
+                    const user = userCredential.user;
+                    console.log("Logged in as:", user.displayName);
+
+                    window.location.href ="home_page.html";
+                })
+                .catch((error) => {
+                    // Handle authentication errors
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Google login error:", errorCode, errorMessage);
+                });
+        });
+    </script>
+    </body>
+</html>

@@ -116,7 +116,7 @@ jobsRef.on("value", (snapshot) => {
     // THIS FUNCTION IS TAKING THE USER TO THE APPLICATION PAGE
     function goto_application(){
       alert("Now applying to " + jobData.title);
-      window.location.href = "application_form.html?employer_email="+jobData.employer_email;
+      window.location.href = "contact.html?employer_email="+jobData.employer_email;
     }
     ApplyButton.onclick= goto_application;
 

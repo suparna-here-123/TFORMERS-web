@@ -43,12 +43,16 @@
 
             const db = firebase.database();
             const msgRef = db.ref("Msgs")
+            const usersRef = db.ref("Users");
 
             // getting user to give their name upon entering the chat app
             let name="";
             function init()
             {
-                name=prompt("Please enter your name");
+              const globalValue = localStorage.getItem('globalVar');
+              console.log(globalValue);
+              name = globalValue;
+
             }
             // calls the init function when the html page is ready and rendered
             document.addEventListener('DOMContentLoaded', init);

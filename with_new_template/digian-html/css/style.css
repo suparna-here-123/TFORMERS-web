@@ -538,11 +538,19 @@ a:focus {
 
 .case_section .box .img-box {
   position: relative;
+  width: 200px; /* Adjust the width and height as needed */
+  height: 200px; /* This creates a square container */
+  overflow: hidden; /* Hides any part of the image that goes beyond the container */
+  border-radius: 50%; /* Creates a circular shape */
 }
 
 .case_section .box .img-box img {
-  width: 100%;
+  width: 100%; /* Set the image width to 100% of the container */
+  height: 100%; /* Set the image height to 100% of the container */
+  object-fit: cover; /* Maintains aspect ratio and covers the entire container */
 }
+
+
 
 .case_section .box .detail-box {
   padding: 25px;
